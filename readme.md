@@ -21,11 +21,7 @@ A full-stack web application to browse and manage a categorized course catalog. 
 
 ---
 
-## 🏗️ Project Structure
-
----
-
-## 🐳 Getting Started (Docker)
+## 🏗️ Project Instructions
 
 ### 1. Clone the repo
 
