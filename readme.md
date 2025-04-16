@@ -31,12 +31,10 @@ A full-stack web application to browse and manage a categorized course catalog. 
 
 ```bash
 1) git clone https://github.com/torika2/kc-fullstack-dev-tech-task.git
-2) unzip the folder
-3) Download Docker Desktop
-  OPEN DOCKER!
-4) docker-compose up --build
-5) php api/index.php migrate
-6) php api/index.php seed
+2) Download and Open Docker Desktop
+3) docker-compose up --build
+4) php api/index.php migrate
+5) php api/index.php seed
 ```
 
 ```bash
