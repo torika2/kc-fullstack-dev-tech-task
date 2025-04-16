@@ -40,5 +40,5 @@ A full-stack web application to browse and manage a categorized course catalog. 
 ```
 
 ```bash
-- http://front.cc.localhost:5173
+http://front.cc.localhost:5173
 ```
