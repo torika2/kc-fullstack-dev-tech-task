@@ -37,3 +37,8 @@ A full-stack web application to browse and manage a categorized course catalog. 
 4) docker-compose up --build
 5) php api/index.php migrate
 6) php api/index.php seed
+```
+
+```bash
+- http://front.cc.localhost:5173
+```
