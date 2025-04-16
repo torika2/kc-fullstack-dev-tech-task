@@ -23,16 +23,19 @@ A full-stack web application to browse and manage a categorized course catalog. 
 
 ## 🏗️ Project Instructions
 
-### 1. Clone the repo
-
 ```bash
-1) git clone https://github.com/torika2/kc-fullstack-dev-tech-task.git
-2) Download and Open Docker Desktop
-3) docker-compose up --build
-4) php api/index.php migrate
-5) php api/index.php seed
+git clone https://github.com/torika2/kc-fullstack-dev-tech-task.git
 ```
-
+ - Download and Open Docker Desktop
+```bash
+docker-compose up --build
+```
+```bash
+php api/index.php migrate
+```
+```bash
+php api/index.php seed
+```
 ```bash
 http://front.cc.localhost:5173
 ```
