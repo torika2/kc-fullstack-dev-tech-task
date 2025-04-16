@@ -1,0 +1,60 @@
+
+services:
+  reverse-proxy:
+    image: traefik:v2.11
+    command:
+      - --api.insecure=true
+      - --providers.docker
+      - --entrypoints.http.address=:80
+      - --entrypoints.mysql.address=:3306
+      - --providers.docker.exposedbydefault=true
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "3307:3306"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: test_password
+      MYSQL_DATABASE: course_catalog
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test_password
+    volumes:
+      - ./mysql:/var/lib/mysql
+    hostname: database.cc.localhost
+    labels:
+      - traefik.tcp.routers.mysql.entrypoints=mysql
+      - traefik.tcp.routers.mysql.rule=HostSNI(`*`)
+      - traefik.tcp.services.mysql.loadbalancer.server.port=3306
+    ports:
+      - "8001:3306"
+
+  api:
+    build:
+      context: ./api
+    container_name: api
+    depends_on:
+      - db
+    volumes:
+      - ./api:/var/www/html
+    ports:
+      - "8081:80"
+    stdin_open: true
+    tty: true
+    hostname: api.cc.localhost
+    labels:
+      - traefik.http.routers.api.rule=Host(`api.cc.localhost`)
+  front:
+    image: node:18
+    container_name: front
+    working_dir: /app
+    volumes:
+      - ./front_end:/app
+    command: sh -c "npm install && npm run serve"
+    hostname: front.cc.localhost
+    ports:
+      - "5173:5173"
+    labels:
+      - traefik.http.routers.front.rule=Host(`cc.localhost`)
